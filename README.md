@@ -2,24 +2,13 @@
 
 Asistente personal estilo Jarvis. Versión 0.1: bot de Telegram con voz.
 
-## Instalación en Windows (Galaxy Book)
+## Instalación en Windows (fácil)
 
-1. Instala **Python 3.12** desde https://www.python.org/downloads/ (marca "Add Python to PATH").
-2. Descarga este repositorio (botón verde **Code → Download ZIP**) y descomprímelo.
-3. Abre la carpeta, clic derecho → **Abrir en Terminal**, y ejecuta:
-   ```
-   python -m venv .venv
-   .venv\Scripts\activate
-   pip install -r requirements.txt
-   copy .env.example .env
-   notepad .env
-   ```
-4. En el Bloc de notas pega tu `TELEGRAM_TOKEN` y guarda.
-5. Arranca a Monet:
-   ```
-   python -m monet.bot
-   ```
-6. En Telegram escríbele `/start` a tu bot. Te dirá tu ID: ponlo en `OWNER_ID` dentro de `.env`, guarda, cierra Monet (Ctrl+C) y vuelve a arrancarlo.
+1. Instala **Python 3.12** desde https://www.python.org/downloads/
+2. Descarga este repositorio (**Code → Download ZIP**) y extráelo.
+3. Doble clic en **`instalar.bat`** y pega el token de BotFather cuando te lo pida.
+4. Doble clic en **`iniciar.bat`**.
+5. En Telegram escríbele `/start` a tu bot. El primero que le escribe queda registrado como dueño.
 
 ## Comandos
 - `/voz` – activar/desactivar respuestas con voz

@@ -1,7 +1,7 @@
 import logging
 import os
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, set_key
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
@@ -21,12 +21,16 @@ def is_owner(update: Update) -> bool:
 
 async def guard(update: Update) -> bool:
     """Solo el dueño puede usar a Monet."""
+    global OWNER_ID
     if is_owner(update):
         return True
     if not OWNER_ID:
-        await update.message.reply_text(
-            f"Hola. Tu ID es {update.effective_user.id}. Ponlo en OWNER_ID dentro de .env "
-            "y reinicia a Monet.")
+        # El primero que le escribe a Monet se vuelve su dueño (y se guarda en .env)
+        OWNER_ID = str(update.effective_user.id)
+        set_key(".env", "OWNER_ID", OWNER_ID)
+        log.info("Dueño registrado: %s", OWNER_ID)
+        await update.message.reply_text("🎨 Lo reconozco como mi dueño, señor. Solo usted podrá hablarme.")
+        return True
     else:
         log.warning("Acceso denegado a %s", update.effective_user.id)
     return False
